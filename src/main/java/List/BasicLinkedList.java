@@ -29,6 +29,24 @@ public class BasicLinkedList<X> {
         nodeCount++;
     }
 
+    public void insert(X item,int position){
+        if(size()<position){
+            throw new IllegalStateException("the linked list is smaller than the posision you accessed");
+        }
+
+        Node currentNode = first;
+        //start from 1 bcz we already on the irst node
+        for(int i=1;i<position && currentNode!=null;i++){
+            currentNode = currentNode.getNextNode();
+        }
+        //connect new node
+        Node newNode = new Node(item);
+        Node nextNode = currentNode.getNextNode();
+        currentNode.setNextNode(newNode);
+        newNode.setNextNode(nextNode);
+        nodeCount++;
+    }
+
     public X remove(){
         if(first==null){
             throw new IllegalStateException("The linked list is empty");
